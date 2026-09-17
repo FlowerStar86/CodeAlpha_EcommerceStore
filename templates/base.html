@@ -20,9 +20,9 @@
 
         <div class="nav-left">
 
-            <a href="/products/">🛍️ Products</a>
+            <a href="/products/">Products</a>
 
-            <a href="/cart/">🛒 Cart</a>
+            <a href="/cart/">Cart</a>
 
             {% if user.is_authenticated %}
                 <a href="/favorites/">♥ Favorites</a>
@@ -38,32 +38,24 @@
             {% if user.is_authenticated %}
 
                 <span class="greeting">
-                    👋 Hi, {{ user.username }}
+                    Hi, {{ user.username }}
                 </span>
 
                 <a href="/profile/" class="nav-profile-icon">
-
-                    {% if user.profile.icon == "flower" %}🌸
-                    {% elif user.profile.icon == "butterfly" %}🦋
-                    {% elif user.profile.icon == "fish" %}🐟
-                    {% elif user.profile.icon == "star" %}⭐
-                    {% elif user.profile.icon == "car" %}🚗
-                    {% elif user.profile.icon == "zebra" %}🦓
-                    {% elif user.profile.icon == "horse" %}🐴
-                    {% elif user.profile.icon == "camel" %}🐪
-                    {% elif user.profile.icon == "hourglass" %}⏳
-                    {% elif user.profile.icon == "ant" %}🐜
+                    {% if user.profile.profile_picture %}
+                        <img src="{{ user.profile.profile_picture.url }}" alt="Profile">
+                    {% else %}
+                        Profile
                     {% endif %}
-
                 </a>
-
-                <a href="/logout/">🚪 Logout</a>
+                        
+                <a href="/logout/">Logout</a>
 
             {% else %}
 
-                <a href="/login/">🔑 Login</a>
+                <a href="/login/">Login</a>
 
-                <a href="/register/">📝 Register</a>
+                <a href="/register/"> Register</a>
 
             {% endif %}
 

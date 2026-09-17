@@ -1,37 +1,21 @@
 """
 URL configuration for ecommerce project.
 """
-
+from django.shortcuts import redirect
 from django.contrib import admin
 from django.urls import path
-
-from store.views import (
-    product_list,
-    product_detail,
-    add_to_cart,
-    register,
-    user_login,
-    user_logout,
-    checkout,
-    remove_from_cart,
-    cart,
-    increase_quantity,
-    decrease_quantity,
-    profile,
-    edit_profile,
-    toggle_favorite,
-    favorites,
-)
-
+from store.views import (product_list,product_detail,add_to_cart,register,user_login,user_logout,checkout,remove_from_cart,cart,increase_quantity,decrease_quantity,profile,edit_profile,toggle_favorite,favorites,)
 from django.conf import settings
 from django.conf.urls.static import static
 
 
 urlpatterns = [
 
+    path("", lambda request: redirect("product_list")),
+
     path("admin/", admin.site.urls),
 
-    path("products/", product_list),
+    path("products/", product_list, name="product_list"),
 
     path("products/<int:product_id>/", product_detail),
 
@@ -57,17 +41,10 @@ urlpatterns = [
 
     path("profile/edit/", edit_profile, name="edit_profile"),
 
-    path(
-        "favorite/<int:product_id>/",
-        toggle_favorite,
-        name="toggle_favorite"
-    ),
+    path("favorite/<int:product_id>/",toggle_favorite,name="toggle_favorite"),
 
-    path(
-        "favorites/",
-        favorites,
-        name="favorites"
-    ),
+    path("favorites/",favorites,name="favorites"),
+
 ]
 
 

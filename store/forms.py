@@ -12,12 +12,7 @@ class RegistrationForm(forms.ModelForm):
         required=False
     )
 
-    icon = forms.ChoiceField(
-        choices=Profile.ICON_CHOICES,
-        required=True,
-        widget=forms.RadioSelect
-    )
-
+    
     email = forms.EmailField(required=True)
 
     password = forms.CharField(
@@ -56,7 +51,6 @@ class RegistrationForm(forms.ModelForm):
             profile.name = self.cleaned_data["name"]
             profile.age = self.cleaned_data["age"]
             profile.gender = self.cleaned_data["gender"]
-            profile.icon = self.cleaned_data["icon"]
             profile.save()
 
         return user

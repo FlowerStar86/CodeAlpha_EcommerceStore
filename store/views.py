@@ -270,13 +270,11 @@ def decrease_quantity(request, product_id):
 
     return redirect("cart")
 
-
 @login_required(login_url="/login/")
 def profile(request):
     profile, _ = Profile.objects.get_or_create(
         user=request.user
     )
-
     return render(request, "profile.html", {
         "profile": profile,
         "user": request.user,
@@ -290,20 +288,21 @@ def edit_profile(request):
     )
 
     if request.method == "POST":
-        request.user.username = request.POST.get(
-            "username"
-        )
-
-        request.user.email = request.POST.get(
-            "email"
-        )
-
+        request.user.username = request.POST.get("username")
+        request.user.email = request.POST.get("email")
         request.user.save()
 
         profile.name = request.POST.get("name")
         profile.age = request.POST.get("age") or None
         profile.gender = request.POST.get("gender")
-        profile.icon = request.POST.get("icon")
+
+        if request.POST.get("remove_profile_picture"):
+            if profile.profile_picture:
+                profile.profile_picture.delete(save=False)
+            profile.profile_picture = None
+
+        elif request.FILES.get("profile_picture"):
+            profile.profile_picture = request.FILES["profile_picture"]
 
         profile.save()
 

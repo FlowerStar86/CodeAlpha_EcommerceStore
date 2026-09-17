@@ -61,35 +61,18 @@ class Profile(models.Model):
         ("Prefer not to say", "Prefer not to say"),
     ]
 
-    ICON_CHOICES = [
-        ("flower", "🌸 Flower"),
-        ("butterfly", "🦋 Butterfly"),
-        ("fish", "🐟 Fish"),
-        ("star", "⭐ Star"),
-        ("car", "🚗 Car"),
-        ("zebra", "🦓 Zebra"),
-        ("hourglass", "⏳ Hourglass"),
-        ("ant", "🐜 Ant"),
-        ("horse", "🐴 Horse"),
-        ("camel", "🐪 Camel"),
-    ]
-
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-
     name = models.CharField(max_length=200, blank=True)
-
     age = models.PositiveIntegerField(blank=True, null=True)
-    
     gender = models.CharField(
         max_length=30,
         choices=GENDER_CHOICES,
         blank=True
     )
-
-    icon = models.CharField(
-        max_length=30,
-        choices=ICON_CHOICES,
-        default="flower"
+    profile_picture = models.ImageField(
+        upload_to="profiles/",
+        blank=True,
+        null=True
     )
 
     def __str__(self):

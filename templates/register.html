@@ -105,33 +105,7 @@
             {{ form.gender }}
             {{ form.gender.errors }}
         </div>
-
-        <div class="icon-section">
-
-            <label class="icon-title">
-                {{ form.icon.label }}
-            </label>
-
-            <div class="icon-options">
-
-                {% for radio in form.icon %}
-
-                    <label class="icon-option">
-
-                        {{ radio.tag }}
-
-                        <span>{{ radio.choice_label }}</span>
-
-                    </label>
-
-                {% endfor %}
-
-            </div>
-
-            {{ form.icon.errors }}
-
-        </div>
-
+        
         <button type="submit" class="auth-button">
             Create Account
         </button>
