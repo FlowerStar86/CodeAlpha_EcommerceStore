@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Logged Out{% endblock %}
+
+{% block content %}
+
+<div class="logout-page">
+
+    <div class="logout-card">
+
+        <div class="logout-icon">👋</div>
+
+        <h1>You have been logged out</h1>
+
+        <p>Thank you for visiting our store! 💚</p>
+
+        <div class="logout-buttons">
+
+            <a href="/login/" class="login-button">
+                Login Again
+            </a>
+
+            <a href="/products/" class="continue-button">
+                Continue Shopping
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

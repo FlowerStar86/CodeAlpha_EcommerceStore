@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+
+{% block title %}Create an Account{% endblock %}
+
+{% block content %}
+
+<div class="auth-page">
+
+<div class="auth-card register-card">
+
+    <h1>Create Your Account</h1>
+
+    <p class="auth-subtitle">
+        Create your account and start shopping
+    </p>
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        {% if form.non_field_errors %}
+            <div class="register-errors">
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+
+        <div class="register-field">
+            {{ form.username.label_tag }}
+            {{ form.username }}
+            {{ form.username.errors }}
+        </div>
+
+        <div class="register-field">
+            {{ form.email.label_tag }}
+            {{ form.email }}
+            {{ form.email.errors }}
+        </div>
+
+        <div class="password-row">
+
+            <div class="register-field password-field">
+
+                {{ form.password.label_tag }}
+
+                <div class="password-input-wrapper">
+
+                    {{ form.password }}
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        data-target="{{ form.password.id_for_label }}"
+                    >
+                        Show password
+                    </button>
+
+                </div>
+
+                <p id="password-message" class="password-message"></p>
+
+                {{ form.password.errors }}
+
+            </div>
+
+            <div class="register-field password-field">
+
+                {{ form.confirm_password.label_tag }}
+
+                <div class="password-input-wrapper">
+
+                    {{ form.confirm_password }}
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        data-target="{{ form.confirm_password.id_for_label }}"
+                    >
+                        Show password
+                    </button>
+
+                </div>
+
+                <p id="confirm-password-message" class="password-message"></p>
+
+                {{ form.confirm_password.errors }}
+
+            </div>
+
+        </div>
+
+        <div class="register-field">
+            {{ form.name.label_tag }}
+            {{ form.name }}
+            {{ form.name.errors }}
+        </div>
+
+        <div class="register-field">
+            {{ form.age.label_tag }}
+            {{ form.age }}
+            {{ form.age.errors }}
+        </div>
+
+        <div class="register-field">
+            {{ form.gender.label_tag }}
+            {{ form.gender }}
+            {{ form.gender.errors }}
+        </div>
+
+        <div class="icon-section">
+
+            <label class="icon-title">
+                {{ form.icon.label }}
+            </label>
+
+            <div class="icon-options">
+
+                {% for radio in form.icon %}
+
+                    <label class="icon-option">
+
+                        {{ radio.tag }}
+
+                        <span>{{ radio.choice_label }}</span>
+
+                    </label>
+
+                {% endfor %}
+
+            </div>
+
+            {{ form.icon.errors }}
+
+        </div>
+
+        <button type="submit" class="auth-button">
+            Create Account
+        </button>
+
+    </form>
+
+    <p class="auth-footer">
+        Already have an account?
+
+        <a href="/login/">Login</a>
+    </p>
+
+    <a href="/products/" class="back-products">
+        ← Back to Products
+    </a>
+
+</div>
+
+</div>
+
+{% endblock %}

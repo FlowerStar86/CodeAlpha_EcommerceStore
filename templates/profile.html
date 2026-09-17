@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}My Profile{% endblock %}
+
+{% block content %}
+
+<div class="profile-page">
+
+    <div class="profile-card">
+
+        <div class="profile-icon">
+            {% if profile.icon == "flower" %}🌸
+            {% elif profile.icon == "butterfly" %}🦋
+            {% elif profile.icon == "fish" %}🐟
+            {% elif profile.icon == "star" %}⭐
+            {% elif profile.icon == "car" %}🚗
+            {% elif profile.icon == "zebra" %}🦓
+            {% elif profile.icon == "horse" %}🐴
+            {% elif profile.icon == "camel" %}🐪
+            {% elif profile.icon == "hourglass" %}⏳
+            {% elif profile.icon == "ant" %}🐜
+            {% endif %}
+        </div>
+
+        <h1>{{ profile.name }}</h1>
+
+        <div class="profile-details">
+
+            <p>
+                <strong>Username</strong>
+                <span>{{ user.username }}</span>
+            </p>
+
+            <p>
+                <strong>Email</strong>
+                <span>{{ user.email }}</span>
+            </p>
+
+            <p>
+                <strong>Age</strong>
+                <span>{{ profile.age }}</span>
+            </p>
+
+            <p>
+                <strong>Gender</strong>
+                <span>{{ profile.gender }}</span>
+            </p>
+
+        </div>
+
+        <a href="/profile/edit/" class="edit-profile-button">
+            ✏️ Edit Profile
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

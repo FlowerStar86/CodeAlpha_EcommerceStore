@@ -1,0 +1,87 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>{% block title %}My Store{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+
+<body>
+
+    <nav>
+
+        <!-- LEFT SIDE -->
+
+        <div class="nav-left">
+
+            <a href="/products/">🛍️ Products</a>
+
+            <a href="/cart/">🛒 Cart</a>
+
+            {% if user.is_authenticated %}
+                <a href="/favorites/">♥ Favorites</a>
+            {% endif %}
+
+        </div>
+
+
+        <!-- RIGHT SIDE -->
+
+        <div class="nav-right">
+
+            {% if user.is_authenticated %}
+
+                <span class="greeting">
+                    👋 Hi, {{ user.username }}
+                </span>
+
+                <a href="/profile/" class="nav-profile-icon">
+
+                    {% if user.profile.icon == "flower" %}🌸
+                    {% elif user.profile.icon == "butterfly" %}🦋
+                    {% elif user.profile.icon == "fish" %}🐟
+                    {% elif user.profile.icon == "star" %}⭐
+                    {% elif user.profile.icon == "car" %}🚗
+                    {% elif user.profile.icon == "zebra" %}🦓
+                    {% elif user.profile.icon == "horse" %}🐴
+                    {% elif user.profile.icon == "camel" %}🐪
+                    {% elif user.profile.icon == "hourglass" %}⏳
+                    {% elif user.profile.icon == "ant" %}🐜
+                    {% endif %}
+
+                </a>
+
+                <a href="/logout/">🚪 Logout</a>
+
+            {% else %}
+
+                <a href="/login/">🔑 Login</a>
+
+                <a href="/register/">📝 Register</a>
+
+            {% endif %}
+
+        </div>
+
+    </nav>
+
+
+    <div class="page-content">
+
+        {% block content %}
+        {% endblock %}
+
+    </div>
+
+
+    <script src="{% static 'js/script.js' %}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% block title %}Shopping Cart{% endblock %}
+
+{% block content %}
+
+<h1>🛒 Shopping Cart</h1>
+
+{% if cart_items %}
+
+<div class="cart-list">
+
+    {% for item in cart_items %}
+
+    <div class="cart-item">
+
+        {% if item.product.image %}
+            <img
+                src="{{ item.product.image.url }}"
+                alt="{{ item.product.name }}"
+                class="cart-image"
+            >
+        {% endif %}
+
+        <div class="cart-info">
+
+            <h2>{{ item.product.name }}</h2>
+
+            <p class="cart-description">
+                {{ item.product.description }}
+            </p>
+
+            <p class="cart-price">
+                AED {{ item.product.price }}
+            </p>
+
+            <div class="quantity">
+                <span>Quantity:</span>
+
+                <a
+                    href="/cart/decrease/{{ item.product.id }}/"
+                    class="quantity-button"
+                >
+                    −
+                </a>
+
+                <span class="quantity-number">
+                    {{ item.quantity }}
+                </span>
+
+                <a
+                    href="/cart/increase/{{ item.product.id }}/"
+                    class="quantity-button"
+                >
+                    +
+                </a>
+            </div>
+
+            <p class="cart-subtotal">
+                Subtotal: AED {{ item.subtotal }}
+            </p>
+
+            <a
+                href="/cart/remove/{{ item.product.id }}/"
+                class="remove-button"
+            >
+                Remove
+            </a>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+<div class="cart-summary">
+
+    <h2>Total: AED {{ total }}</h2>
+
+    <a href="/checkout/" class="checkout-button">
+        Checkout
+    </a>
+
+</div>
+
+{% else %}
+
+<div class="empty-cart">
+    <h2>Your cart is empty 🛒</h2>
+    <p>Looks like you haven't added anything yet.</p>
+
+    <a href="/products/" class="view-button">
+        Continue Shopping
+    </a>
+</div>
+
+{% endif %}
+
+<div id="remove-modal" class="remove-modal">
+    <div class="remove-modal-card">
+        <h2>Remove item?</h2>
+
+        <p>Are you sure you want to remove this item from your cart?</p>
+
+        <div class="remove-modal-buttons">
+            <button type="button" id="cancel-remove" class="cancel-remove">
+                Cancel
+            </button>
+
+            <button type="button" id="confirm-remove" class="confirm-remove">
+                Remove
+            </button>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,180 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Profile{% endblock %}
+
+{% block content %}
+
+<div class="edit-profile-page">
+
+    <div class="edit-profile-card">
+
+        <h1>✏️ Edit Profile</h1>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value="{{ profile.name }}"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    value="{{ user.username }}"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value="{{ user.email }}"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input
+                    type="number"
+                    id="age"
+                    name="age"
+                    value="{{ profile.age }}"
+                    min="1"
+                    max="120"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="gender">Gender</label>
+
+                <select id="gender" name="gender">
+                    <option value="">Prefer not to say</option>
+
+                    <option value="Male"
+                        {% if profile.gender == "Male" %}selected{% endif %}>
+                        Male
+                    </option>
+
+                    <option value="Female"
+                        {% if profile.gender == "Female" %}selected{% endif %}>
+                        Female
+                    </option>
+
+                    <option value="Other"
+                        {% if profile.gender == "Other" %}selected{% endif %}>
+                        Other
+                    </option>
+                </select>
+            </div>
+
+            <div class="icon-section">
+
+                <label class="icon-title">Choose Your Profile Icon</label>
+
+                <div class="icon-options">
+
+                    <label class="icon-option">
+                        <input type="radio" name="icon" value="flower"
+                            {% if profile.icon == "flower" %}checked{% endif %}>
+                        <span>🌸</span>
+                        Flower
+                    </label>
+
+                    <label class="icon-option">
+                        <input type="radio" name="icon" value="butterfly"
+                            {% if profile.icon == "butterfly" %}checked{% endif %}>
+                        <span>🦋</span>
+                        Butterfly
+                    </label>
+
+                    <label class="icon-option">
+                        <input type="radio" name="icon" value="fish"
+                            {% if profile.icon == "fish" %}checked{% endif %}>
+                        <span>🐟</span>
+                        Fish
+                    </label>
+
+                    <label class="icon-option">
+                        <input type="radio" name="icon" value="star"
+                            {% if profile.icon == "star" %}checked{% endif %}>
+                        <span>⭐</span>
+                        Star
+                    </label>
+
+                    <label class="icon-option">
+                        <input type="radio" name="icon" value="car"
+                            {% if profile.icon == "car" %}checked{% endif %}>
+                        <span>🚗</span>
+                        Car
+                    </label>
+
+                    <label class="icon-option">
+                        <input type="radio" name="icon" value="zebra"
+                            {% if profile.icon == "zebra" %}checked{% endif %}>
+                        <span>🦓</span>
+                        Zebra
+                    </label>
+
+                    <label class="icon-option">
+                        <input type="radio" name="icon" value="horse"
+                            {% if profile.icon == "horse" %}checked{% endif %}>
+                        <span>🐴</span>
+                        Horse
+                    </label>
+
+                    <label class="icon-option">
+                        <input type="radio" name="icon" value="camel"
+                            {% if profile.icon == "camel" %}checked{% endif %}>
+                        <span>🐪</span>
+                        Camel
+                    </label>
+
+                    <label class="icon-option">
+                        <input type="radio" name="icon" value="hourglass"
+                            {% if profile.icon == "hourglass" %}checked{% endif %}>
+                        <span>⏳</span>
+                        Hourglass
+                    </label>
+
+                    <label class="icon-option">
+                        <input type="radio" name="icon" value="ant"
+                            {% if profile.icon == "ant" %}checked{% endif %}>
+                        <span>🐜</span>
+                        Ant
+                    </label>
+
+                </div>
+
+            </div>
+
+            <button type="submit" class="save-profile-button">
+                Save Changes
+            </button>
+
+        </form>
+
+        <a href="/profile/" class="back-profile-button">
+            ← Back to Profile
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

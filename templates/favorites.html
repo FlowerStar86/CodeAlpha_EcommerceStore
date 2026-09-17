@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block title %}Favorites{% endblock %}
+
+{% block content %}
+
+<div class="favorites-page">
+
+    <h1>♥ My Favorites</h1>
+
+    <p class="favorites-subtitle">
+        Products you saved for later
+    </p>
+
+    {% if favorites %}
+
+        <div class="products-grid">
+
+            {% for favorite in favorites %}
+
+                <div class="product-card">
+
+                    {% if favorite.product.image %}
+                        <img
+                            src="{{ favorite.product.image.url }}"
+                            alt="{{ favorite.product.name }}"
+                        >
+                    {% endif %}
+
+                    <div class="product-info">
+
+                        <h2>{{ favorite.product.name }}</h2>
+
+                        <p class="product-description">
+                            {{ favorite.product.description }}
+                        </p>
+
+                        <p class="product-price">
+                            AED {{ favorite.product.price }}
+                        </p>
+
+                        <div class="product-actions">
+
+                            <a
+                                class="view-button"
+                                href="/products/{{ favorite.product.id }}/"
+                            >
+                                View Details
+                            </a>
+
+                            <a
+                                class="favorite-button"
+                                href="{% url 'toggle_favorite' favorite.product.id %}"
+                                title="Remove from Favorites"
+                            >
+                                ♥
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="empty-favorites">
+
+            <div class="empty-favorites-heart">♡</div>
+
+            <h2>No favorites yet</h2>
+
+            <p>
+                Add products to your favorites and they will appear here.
+            </p>
+
+            <a
+                href="/products/"
+                class="view-button"
+            >
+                Browse Products
+            </a>
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

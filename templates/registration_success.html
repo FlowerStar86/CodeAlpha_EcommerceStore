@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome{% endblock %}
+
+{% block content %}
+
+<div class="success-page">
+
+<div class="success-card">
+
+    <div class="welcome-icon">👋</div>
+
+    <h1>Welcome, {{ user.username }}!</h1>
+
+    <p>You have successfully created your account.</p>
+
+    <a href="/products/" class="continue-button">
+        🛍️ Start Shopping
+    </a>
+
+</div>
+
+</div>
+
+{% endblock %}
